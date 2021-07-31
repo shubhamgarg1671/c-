@@ -1,0 +1,134 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "type": "shell",
+          "label": "build & run",
+          "command": "g++",
+          "args": [
+              "-g",
+              "${relativeFile}",
+              "-o",
+              "build\\${fileBasenameNoExtension}",
+              "&&",
+              "build\\${fileBasenameNoExtension}"
+          ],
+          "options": {
+              "cwd": "${workspaceFolder}"
+          },
+          "problemMatcher": "$gcc",
+          "presentation": {
+              "echo": true,
+              "reveal": "always",
+              "focus": true,
+              "panel": "shared",
+              "showReuseMessage": false,
+              "clear": false
+          },
+          "group": {
+            "kind": "build", 
+            "isDefault": true
+          }
+      },
+      {
+          "type": "shell",
+          "label": "build & run with input",
+          "command": "g++",
+          "args": [
+              "-g",
+              "${relativeFile}",
+              "-o",
+              "build\\${fileBasenameNoExtension}",
+              "&&",
+              "build\\${fileBasenameNoExtension}",
+              "<",
+              "build\\input.txt"
+          ],
+          "options": {
+              "cwd": "${workspaceFolder}"
+          },
+          "problemMatcher": "$gcc",
+          "presentation": {
+              "echo": false,
+              "reveal": "always",
+              "focus": true,
+              "panel": "shared",
+              "showReuseMessage": false,
+              "clear": false
+          },
+          "group": "build"
+      },
+      {
+          "type": "shell",
+          "label": "build",
+          "command": "g++",
+          "args": [
+              "-g",
+              "-Wall",
+              "-Wextra",
+              "${relativeFile}",
+              "-o",
+              "build\\${fileBasenameNoExtension}"
+          ],
+          "options": {
+              "cwd": "${workspaceFolder}"
+          },
+          "problemMatcher": "$gcc",
+          "presentation": {
+              "echo": false,
+              "reveal": "always",
+              "focus": false,
+              "panel": "shared",
+              "showReuseMessage": false,
+              "clear": false
+          },
+          "group":  "build"
+      },
+      {
+          "type": "shell",
+          "label": "run with input",
+          "command": "",
+          "args": [
+              "./build\\${fileBasenameNoExtension}",
+              "<",
+              "./build\\input.txt"
+          ],
+          "options": {
+              "cwd": "${workspaceFolder}"
+          },
+          "group": "build"
+          ,
+          "problemMatcher": "$gcc",
+          "presentation": {
+              "echo": false,
+              "reveal": "always",
+              "focus": true,
+              "panel": "shared",
+              "showReuseMessage": false,
+              "clear": false
+          }
+      },
+      {
+          "type": "shell",
+          "label": "run",
+          "command": "",
+          "args": [
+              "./build\\${fileBasenameNoExtension}"
+          ],
+          "options": {
+              "cwd": "${workspaceFolder}"
+          },
+          "group": "build"
+          ,
+          "problemMatcher": "$gcc",
+          "presentation": {
+              "echo": false,
+              "reveal": "always",
+              "focus": true,
+              "panel": "shared",
+              "showReuseMessage": false,
+              "clear": false
+          }
+      }
+  ]
+}
