@@ -21,26 +21,59 @@ int main()
 
 void solve()
 {
-    ll n, i, d, h;
+    ll n, i;
     cin >> n;
-    ll ar[n];
-    ll ans = 0;
+    ll a[n];
+    ll b[n];
+    ll c[n];
     for (i = 0; i < n; i++)
     {
-        cin >> ar[i];
+        cin >> a[i];
+//        a[i] = a[i]  % n;
+        c[i] = n;
     }
-    sort(ar, ar + n);
-    ll cf = 0;
-    for (i = 0; i < n ; i++)
+    for (i = 0; i < n; i++)
     {
-        cf++;
-        while (i < n - 1 && ar[i] == ar[i + 1]) {
-            i++;
-            cf++;
-        }
-        ans = ans + (cf * (n - cf));
-        cf = 0;
+        cin >> b[i];
+  //      b[i] = b[i]  % n;
     }
-    cout << ans;
+    vector<ll> vec;
+    for (i = 0; i < n; i++)
+    {
+        if ((a[0] + b[i]) % n < c[0]) {
+            vec.clear();
+            vec.push_back(i);
+            c[0] = (a[0] + b[i]) % n;
+        }
+        else if ((a[0] + b[i]) % n == c[0]) {
+            vec.push_back(i);
+        }
+    }
+    for (i = 0; i < n; i++) {
+        c[i] = (a[i] + b[(vec[0] + i) % n]) % n;
+    }
+    ll fl = 0;
+    for (i = 0; i < n; i++) {
+        if (vec.size() == 1)
+        {
+            break;
+        }
+        if (fl != 1 && c[i] != (a[i] + b[(vec[1] + i) % n]) % n)
+        {
+            if (c[i] < (a[i] + b[(vec[1] + i) % n]) % n) {
+                break;
+            } else {
+                fl = 1;
+            }
+        }
+        if (fl == 1) {
+            c[i] = (a[i] + b[(vec[1] + i) % n]) % n;
+        }
+    }
+    fl = 1;
+    for (i = 0; i < n; i++)
+    {
+        cout << c[i] << " ";
+    }
     cout << endl;
 }
