@@ -12,7 +12,7 @@ int main()
     //freopen("input.txt", "r", stdin);
     //freopen("text.txt", "w", stdout);
     ll t = 1;
-    //cin >> t;
+    cin >> t;
     while (t--) 
     {
         solve();
@@ -21,8 +21,26 @@ int main()
 
 void solve()
 {
-    ll n, i;
+    ll n, i, d, h;
     cin >> n;
-    
+    ll ar[n];
+    ll ans = 0;
+    for (i = 0; i < n; i++)
+    {
+        cin >> ar[i];
+    }
+    sort(ar, ar + n);
+    ll cf = 0;
+    for (i = 0; i < n ; i++)
+    {
+        cf++;
+        while (i < n - 1 && ar[i] == ar[i + 1]) {
+            i++;
+            cf++;
+        }
+        ans = ans + (cf * (n - cf));
+        cf = 0;
+    }
+    cout << ans;
     cout << endl;
 }
