@@ -243,6 +243,92 @@ ll binarySearch(ll arr[], ll l, ll r, ll x)
     return -1;
 }
 
+
+// Graph class represents a undirected graph
+// using adjacency list representation
+class Graph {
+    // No. of vertices
+    int V;
+ 
+    // Pointer to an array containing adjacency lists
+    list<int>* adj;
+ 
+    // A function used by DFS
+    void DFSUtil(int v, bool visited[])
+    {
+        // Mark the current node as visited
+        visited[v] = true;
+    
+        // Recur for all the vertices
+        // adjacent to this vertex
+        list<int>::iterator i;
+        // cout << v << endl;
+        for (i = adj[v].begin(); i != adj[v].end(); ++i) {
+            
+            if (!visited[*i]) {
+                DFSUtil(*i, visited);
+            }
+        }
+    }
+
+public:
+    // Constructor
+    Graph(int V)
+    {
+        this->V = V;
+        adj = new list<int>[V];
+    }
+
+    // Add an undirected edge
+    void addEdge(int v, int w)
+    {
+        adj[v].push_back(w);
+        adj[w].push_back(v);
+    }
+
+    // Function to return the number of
+    // connected components in an undirected graph
+    int NumberOfconnectedComponents()
+    {
+        // Mark all the vertices as not visited
+        bool* visited = new bool[V];
+    
+        // To store the number of connected components
+        int count = 0;
+        for (int v = 0; v < V; v++)
+            visited[v] = false;
+    
+        for (int v = 0; v < V; v++) {
+            if (visited[v] == false) {
+                DFSUtil(v, visited);
+                count += 1;
+            }
+        }
+        return count;
+    }
+
+    void removeEdge(int v, int w) 
+    {
+        if (*adj[v].end() == w)
+        {
+            adj[v].pop_back();
+        }
+        if (*adj[w].end() == v)
+        {
+            adj[w].pop_back();
+        }
+        if (adj[v].front() == w)
+        {
+            adj[v].pop_front();
+        }
+        if (adj[w].front() == v)
+        {
+            adj[w].pop_front();
+        }
+    }
+};
+ 
+ 
 int main ()
 {   
     ios_base::sync_with_stdio(false);
