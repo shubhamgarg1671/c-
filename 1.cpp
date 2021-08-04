@@ -32,15 +32,34 @@ void solve()
     for (i = 0; i < n; i++)
     {
         cin >> ar[1][i];
+        if (i != 0 && i != n -1)
+        {
+            ar[1][i] = ar[1][i - 1] + ar[1][i];
+        }
+        if (i == n - 1)
+        {
+            ar[1][i] = ar[1][i - 1];
+        }
     }
-    ar[1][n - 1] = 0;
+    if (n == 1)
+    {
+        cout << "0" << endl;
+        return;
+    }
     ar[0][0] = 0;
     for (i = n - 2; i >= 0; i--)
     {
-        ar[1][i] = ar[1][i + 1] + ar[1][i];
+        ar[0][i] = ar[0][i + 1] + ar[0][i];
     }
-    ll ans = LLONG_MAX;
-    
+
+    ll ans = ar[0][0];
+    for (i = 1; i < n - 1; i++)
+    {
+  //      cout << ans << " ";
+        ans = min(ans, max(ar[0][i + 1], ar[1][i - 1]));
+//        cout << ans << " ";
+    }
+    ans = min(ans, ar[1][n - 1]);
     cout << ans;
     cout << endl;
 }
