@@ -4,6 +4,13 @@ using namespace std;
 #define lld long double
 #define pb push_back
 
+//this can sort 2d VECTOR based on column where compleete row moves together
+bool sortcol( const vector<ll>& v1, const vector<ll>& v2 ) { 
+ return v1[1] < v2[1]; 
+} 
+
+
+
 void solve();
 int main()
 {
@@ -13,7 +20,7 @@ int main()
     //freopen("text.txt", "w", stdout);
     ll t = 1;
     cin >> t;
-    while (t--)
+    while (t--) 
     {
         solve();
     }
@@ -21,45 +28,41 @@ int main()
 
 void solve()
 {
-    ll n, i;
-    cin >> n;
-    ll ar[2][n];
-    for (i = 0; i < n; i++)
+    ll n, i, k;
+    cin >> n >> k;
+    vector<vector <ll> > vec;
+    vector<ll> tpvec;
+    tpvec.push_back(0);
+    tpvec.push_back(0);
+    for (i = 0; i <n; i++)
     {
-        cin >> ar[0][i];
+        tpvec[0] = i + 1;
+        cin >> tpvec[1];
+        vec.push_back(tpvec);
     }
-
-    for (i = 0; i < n; i++)
+    
+    ll ans = LLONG_MIN;
+    for (i = 1; i < n; i++)
     {
-        cin >> ar[1][i];
-        if (i != 0 && i != n -1)
+        ll tp = (vec[i - 1][0] * vec[i][0]) - (k * (vec[i - 1][1] | vec[i][1]));
+        if (i > 1)
         {
-            ar[1][i] = ar[1][i - 1] + ar[1][i];
+            ll tp1 = (vec[i - 2][0] * vec[i][0]) - (k * (vec[i - 2][1] | vec[i][1]));
+            tp = max(tp, tp1);
         }
-        if (i == n - 1)
+        ans = max(ans, tp);
+    }
+    sort(vec.begin(), vec.end(), sortcol);
+    for (i = 1; i < n; i++)
+    {
+        ll tp = (vec[i - 1][0] * vec[i][0]) - (k * (vec[i - 1][1] | vec[i][1]));
+        if (i > 1)
         {
-            ar[1][i] = ar[1][i - 1];
+            ll tp1 = (vec[i - 2][0] * vec[i][0]) - (k * (vec[i - 2][1] | vec[i][1]));
+            tp = max(tp, tp1);
         }
+        ans = max(ans, tp);
     }
-    if (n == 1)
-    {
-        cout << "0" << endl;
-        return;
-    }
-    ar[0][0] = 0;
-    for (i = n - 2; i >= 0; i--)
-    {
-        ar[0][i] = ar[0][i + 1] + ar[0][i];
-    }
-
-    ll ans = ar[0][0];
-    for (i = 1; i < n - 1; i++)
-    {
-  //      cout << ans << " ";
-        ans = min(ans, max(ar[0][i + 1], ar[1][i - 1]));
-//        cout << ans << " ";
-    }
-    ans = min(ans, ar[1][n - 1]);
     cout << ans;
     cout << endl;
 }
