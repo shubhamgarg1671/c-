@@ -21,26 +21,37 @@ int main()
 
 void solve()
 {
-    ll n, i = 3;
-    ll ans = 0;
-    while (i--)
+    ll n = 4, i;
+    set <ll> st;
+    ll xr = 0;
+    //vector <ll> vec;
+    while(n--)
     {
-        cin >> n;
-        ans = ans + n;
+        ll tp;
+        cin >> tp;
+        xr = xr ^ tp;
+  //      vec.push_back(tp);
+        st.insert(tp);
     }
-    i = 3;
-    while (i--)
-    {
-        cin >> n;
-        ans = ans - n;
-    }
-    if (ans> 0)
-    {
-        cout << "1";
-    }
-    else 
+//    sort(vec.begin(), vec.end());
+    if (st.size() > 2)
     {
         cout << "2";
+    }
+    else if (st.size() == 2)
+    {
+        if (xr == 0)
+        {
+            cout << "2";
+        }
+        else 
+        {
+            cout << "1";
+        }
+    }
+    else
+    {
+        cout << "0";
     }
     cout << endl;
 }
