@@ -12,7 +12,7 @@ int main()
     //freopen("input.txt", "r", stdin);
     //freopen("text.txt", "w", stdout);
     ll t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--) 
     {
         solve();
@@ -21,37 +21,8 @@ int main()
 
 void solve()
 {
-    ll n = 4, i;
-    set <ll> st;
-    ll xr = 0;
-    //vector <ll> vec;
-    while(n--)
-    {
-        ll tp;
-        cin >> tp;
-        xr = xr ^ tp;
-  //      vec.push_back(tp);
-        st.insert(tp);
-    }
-//    sort(vec.begin(), vec.end());
-    if (st.size() > 2)
-    {
-        cout << "2";
-    }
-    else if (st.size() == 2)
-    {
-        if (xr == 0)
-        {
-            cout << "2";
-        }
-        else 
-        {
-            cout << "1";
-        }
-    }
-    else
-    {
-        cout << "0";
-    }
+    ll n, i;
+    cin >> n;
+    
     cout << endl;
 }
