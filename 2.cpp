@@ -21,8 +21,26 @@ int main()
 
 void solve()
 {
-    ll n, i, t;
-    cin >> n;
-    
+    ll n, i = 3;
+    ll ans = 0;
+    while (i--)
+    {
+        cin >> n;
+        ans = ans + n;
+    }
+    i = 3;
+    while (i--)
+    {
+        cin >> n;
+        ans = ans - n;
+    }
+    if (ans> 0)
+    {
+        cout << "1";
+    }
+    else 
+    {
+        cout << "2";
+    }
     cout << endl;
 }
