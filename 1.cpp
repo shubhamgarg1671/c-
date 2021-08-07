@@ -4,76 +4,57 @@ using namespace std;
 #define lld long double
 #define pb push_back
 
-ll N = 100001;
-ll ar[100001];
-vector <vector<ll> >vec(100001); 
-void allFactor()
+//this can sort 2d VECTOR based on column where compleete row moves together
+bool sortcol( const vector<ll>& v1, const vector<ll>& v2 ) { 
+ return v1[0] > v2[0]; 
+} 
+
+ll lcm (ll a, ll b)
 {
-    ll i, j;
-    for (i = 2; i < N; i++)
-    {
-        vec[i].push_back(1);
-        for (j = 2; j <= sqrt(i); j++)
-        {
-            if (i % j == 0)
-            {
-                vec[i].push_back(j);
-                if (j * j != i)
-                vec[i].push_back(i / j);
-            }
-        }
-        sort(vec[i].begin(), vec[i].end());
-    }
+    ll tp = a * b;
+    return tp / __gcd(a, b);
 }
 
-void solve1(ll n);
-ll solve(ll n);
+void solve();
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     //freopen("input.txt", "r", stdin);
-    freopen("text.txt", "w", stdout);
+    //freopen("text.txt", "w", stdout);
     ll t = 1;
     cin >> t;
-    allFactor();
-    while (t--)
+    while (t--) 
     {
-        solve1(t);
+        solve();
     }
 }
 
-void solve1(ll n)
+void solve()
 {
-    ll  i;
-    ll ans = 0;
-    for (i = 2; i <= n; i++)
+    ll n, i, m;
+    cin >> n >> m;
+    vector <vector< ll> > vec(m);
+    for (i = 0; i < m; i++)
     {
-        ll tp = n / i;
-        ans = ans + (tp * vec[i].size());
-//        cout << ans << " ";
-        tp = n % i;
-        tp = (upper_bound(vec[i].begin(), vec[i].end(), tp) - vec[i].begin());
-        ans = ans + tp;
-  //      cout << ans << "  ";
+        ll tp, tp1;
+        cin >> tp >> tp1;
+        vec[i].push_back(tp);
+        vec[i].push_back(tp1);        
     }
-    if (ans != solve(n))
-    cout << n << endl;
-}
-
-ll solve(ll n)
-{
-    ll i;
+    sort(vec.begin(), vec.end(), sortcol);
+    ll lf = n;
+    ll cm = 1;
     ll ans = 0;
-    for (i = 1; i <= n; i++)
+    for (i = 0; i < m; i++)
     {
-        for (ll j = 1; j <= n; j++)
-        {
-            if (i % j != 0 && j % (i % j) == 0)
-            {
-                ans++;
-            }
-        }
+        cm = lcm(cm, vec[i][1]);
+        ll td = lf - (n / cm);
+        //cout << td << " ";
+        ans = ans + (vec[i][0] * td);
+        lf = lf - td;
+        //cout << ans << "  ";
     }
-    return ans;
+    cout << ans;
+    cout << endl;
 }
