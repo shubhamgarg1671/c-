@@ -23,6 +23,6 @@ void solve()
 {
     ll n, i;
     cin >> n;
-    
+    cout << n;
     cout << endl;
 }
