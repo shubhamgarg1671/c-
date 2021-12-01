@@ -4,22 +4,6 @@ using namespace std;
 #define lld long double
 #define pb push_back
 
-class LRUCache {
-public:
-    
-    LRUCache(int capacity) {
-        
-    }
-    
-    int get(int key) {
-        
-    }
-    
-    void put(int key, int value) {
-        
-    }
-};
-
 void solve();
 int main()
 {
@@ -38,7 +22,6 @@ int main()
 void solve()
 {
     ll n, i;
-    cin >> n;
-    cout << n;
+    
     cout << endl;
 }
