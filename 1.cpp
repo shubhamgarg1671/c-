@@ -22,6 +22,7 @@ int main()
 void solve()
 {
     ll n, i;
+    cin >> n;
     
     cout << endl;
 }
