@@ -12,7 +12,7 @@ int main()
     //freopen("input.txt", "r", stdin);
     //freopen("text.txt", "w", stdout);
     ll t = 1;
-    //cin >> t;
+    cin >> t;
     while (t--) 
     {
         solve();
