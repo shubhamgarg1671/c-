@@ -3,7 +3,8 @@ using namespace std;
 #define ll long long int
 #define lld long double
 #define pb push_back
-
+// this command can revert all unstaged changes
+// git restore .
 void solve();
 int main()
 {
