@@ -19,7 +19,7 @@ int main()
     //freopen("text.txt", "w", stdout);
     ll t = 1, i;
     cin >> t;
-    for (i = 1;i < t; i++)
+    for (i = 1;i <= t; i++)
     {
         // kickstart(i);
         solve();
