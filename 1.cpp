@@ -6,7 +6,7 @@ using namespace std;
 #define endl "\n"
 // this command can revert all unstaged changes
 // git restore .
-void gsoc(ll i)
+void kickstart(ll i)
 {
     cout << "Case #" << i << ": ";
 }
@@ -21,7 +21,7 @@ int main()
     cin >> t;
     for (i = 1;i < t; i++)
     {
-        // gsoc(i);
+        // kickstart(i);
         solve();
     }
 }
